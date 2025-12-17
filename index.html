@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="个人网站 - 极简风格的个人展示">
+    <title>个人网站</title>
+    
+    <!-- CSS 文件引入 -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <!-- tsParticles 库 -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.3.4/tsparticles.bundle.min.js"></script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <a href="#home">个人网站</a>
+            </div>
+            <ul class="navbar-menu">
+                <li><a href="#home" class="nav-link active">首页</a></li>
+                <li><a href="about.html" class="nav-link">关于</a></li>
+                <li><a href="contact.html" class="nav-link">联系</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 英雄区 -->
+    <section class="hero" id="home">
+        <!-- 背景图层 - 用于淡出效果 -->
+        <div class="hero-background-layer"></div>
+        <!-- 淡出蒙版 - 从下半部分开始淡出 -->
+        <div class="hero-fade-mask"></div>
+        <!-- 无限轮播容器 -->
+        <div class="hero-carousel-container">
+            <div class="hero-carousel-track">
+                <img src="assets/images/hero-01.png" alt="Hero 01" class="hero-carousel-img">
+                <img src="assets/images/hero-02.png" alt="Hero 02" class="hero-carousel-img">
+                <img src="assets/images/hero-03.png" alt="Hero 03" class="hero-carousel-img">
+                <img src="assets/images/hero-04.png" alt="Hero 04" class="hero-carousel-img">
+                <img src="assets/images/hero-05.png" alt="Hero 05" class="hero-carousel-img">
+                <img src="assets/images/hero-06.png" alt="Hero 06" class="hero-carousel-img">
+                <img src="assets/images/hero-07.png" alt="Hero 07" class="hero-carousel-img">
+                <img src="assets/images/hero-08.png" alt="Hero 08" class="hero-carousel-img">
+                <img src="assets/images/hero-09.png" alt="Hero 09" class="hero-carousel-img">
+                <img src="assets/images/hero-10.png" alt="Hero 10" class="hero-carousel-img">
+                <img src="assets/images/hero-11.png" alt="Hero 11" class="hero-carousel-img">
+                <img src="assets/images/hero-12.png" alt="Hero 12" class="hero-carousel-img">
+                <!-- 重复一遍以实现无缝循环 -->
+                <img src="assets/images/hero-01.png" alt="Hero 01" class="hero-carousel-img">
+                <img src="assets/images/hero-02.png" alt="Hero 02" class="hero-carousel-img">
+                <img src="assets/images/hero-03.png" alt="Hero 03" class="hero-carousel-img">
+                <img src="assets/images/hero-04.png" alt="Hero 04" class="hero-carousel-img">
+                <img src="assets/images/hero-05.png" alt="Hero 05" class="hero-carousel-img">
+                <img src="assets/images/hero-06.png" alt="Hero 06" class="hero-carousel-img">
+                <img src="assets/images/hero-07.png" alt="Hero 07" class="hero-carousel-img">
+                <img src="assets/images/hero-08.png" alt="Hero 08" class="hero-carousel-img">
+                <img src="assets/images/hero-09.png" alt="Hero 09" class="hero-carousel-img">
+                <img src="assets/images/hero-10.png" alt="Hero 10" class="hero-carousel-img">
+                <img src="assets/images/hero-11.png" alt="Hero 11" class="hero-carousel-img">
+                <img src="assets/images/hero-12.png" alt="Hero 12" class="hero-carousel-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- 道章节 -->
+    <section class="dao-section scroll-text-block" id="dao">
+        <div id="particles-dao" class="particles-canvas"></div>
+        <div class="dao-section-container">
+            <h1 class="dao-title">道</h1>
+            <div class="dao-content-area">
+                <!-- 左栏：太极图 -->
+                <div class="dao-image-wrapper">
+                    <img src="assets/images/assetsimagesdao_taiji_final.png" alt="太极图" class="dao-taiji-img">
+                </div>
+                <!-- 右栏：文字内容 -->
+                <div class="dao-text-wrapper">
+                    <div class="dao-sayings">
+                        <p class="dao-saying-line">道生一</p>
+                        <p class="dao-saying-line">一生二</p>
+                        <p class="dao-saying-line">二生三</p>
+                        <p class="dao-saying-line">三生万物</p>
+                    </div>
+                    <p class="dao-saying-en">One begets one, one begets two, two begets three, three begets all things.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 法章节 -->
+    <section class="fa-section scroll-text-block" id="fa">
+        <div id="particles-fa" class="particles-canvas"></div>
+        <div class="fa-section-container">
+            <h1 class="fa-title">法</h1>
+            <div class="fa-principles-grid">
+                <div class="fa-principle-card">
+                    <p class="fa-principle-quote">知人者智，自知者明。——</p>
+                    <p class="fa-principle-desc">在智能成为标配的时代，“明”比“智”更为稀缺。</p>
+                    <p class="fa-principle-en">(To know others is intelligence, to know oneself is true wisdom.)</p>
+                </div>
+                <div class="fa-principle-card">
+                    <p class="fa-principle-quote">日拱一卒，功不唐捐。——</p>
+                    <p class="fa-principle-desc">在每一次最小闭环中，完成定义、构建与反思。</p>
+                    <p class="fa-principle-en">(Steady daily progress yields monumental results.)</p>
+                </div>
+                <div class="fa-principle-card">
+                    <p class="fa-principle-quote">君子使物，不为物使。——</p>
+                    <p class="fa-principle-desc">让智能延伸直觉，而非替代判断。</p>
+                    <p class="fa-principle-en">(The superior person uses tools, and is not used by them.)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 器章节 -->
+    <section class="qi-section scroll-text-block" id="qi">
+        <div id="particles-qi" class="particles-canvas"></div>
+        <div class="qi-section-container">
+            <h2 class="qi-title">器</h2>
+            <!-- 上半区：工具云 -->
+            <div class="qi-tools-section">
+                <h3 class="qi-subtitle">工具 · Tools</h3>
+                <div class="tools-cloud">
+                    <div class="tool-item">
+                        <i class="tool-icon">⌨️</i>
+                        <span class="tool-name">Cursor</span>
+                    </div>
+                    <div class="tool-item">
+                        <i class="tool-icon">🤖</i>
+                        <span class="tool-name">DeepSeek</span>
+                    </div>
+                    <div class="tool-item">
+                        <i class="tool-icon">💎</i>
+                        <span class="tool-name">Gemini</span>
+                    </div>
+                    <div class="tool-item">
+                        <i class="tool-icon">🍌</i>
+                        <span class="tool-name">NanoBanana</span>
+                    </div>
+                    <div class="tool-item">
+                        <i class="tool-icon">🎬</i>
+                        <span class="tool-name">Sora-2</span>
+                    </div>
+                    <div class="tool-item">
+                        <i class="tool-icon">⚡</i>
+                        <span class="tool-name">Grok</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 下半区：作品集 -->
+            <div class="qi-projects-section">
+                <h3 class="qi-subtitle">作品 · Projects</h3>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <h4 class="project-title">行业大模型精调指南</h4>
+                                <p class="project-status">模型训练</p>
+                            </div>
+                            <div class="card-back">
+                                <p class="project-desc">针对特定业务场景，构建了一套从数据清洗到指令微调的标准化流程。</p>
+                                <div class="project-tags">
+                                    <span>AI训练</span>
+                                    <span>方法论</span>
+                                    <span>文档</span>
+                                </div>
+                                <p class="project-hint">⌨️ 点击查看详情</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <h4 class="project-title">"增长黑客"策略模拟器</h4>
+                                <p class="project-status">数据裂变</p>
+                            </div>
+                            <div class="card-back">
+                                <p class="project-desc">一个用于验证和可视化用户增长策略与关键指标关系的交互式分析看板。</p>
+                                <div class="project-tags">
+                                    <span>产品运营</span>
+                                    <span>数据可视化</span>
+                                    <span>原型</span>
+                                </div>
+                                <p class="project-hint">⌨️ 点击查看详情</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <h4 class="project-title">智能体协同工作流 <span class="project-continue">(To be Continued...)</span></h4>
+                                <p class="project-status">概念</p>
+                            </div>
+                            <div class="card-back">
+                                <p class="project-desc">探索多个AI Agent如何自主协作，以完成复杂任务的框架设计。</p>
+                                <div class="project-tags">
+                                    <span>Agent系统</span>
+                                    <span>概念设计</span>
+                                    <span>进行中</span>
+                                </div>
+                                <p class="project-hint">⌨️ 点击查看详情</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 术章节 -->
+    <section class="shu-section scroll-text-block" id="shu">
+        <div id="particles-shu" class="particles-canvas"></div>
+        <div class="shu-content">
+            <!-- 核心标题 -->
+            <h2 class="shu-title">术</h2>
+
+            <!-- 【升级】脉络时间线 -->
+            <div class="meridian-timeline">
+                <!-- 垂直的中枢脉络线（将由CSS动画绘制） -->
+                <div class="meridian-line"></div>
+
+                <!-- 动态节点1 -->
+                <div class="meridian-node">
+                    <div class="node-dot"></div>
+                    <div class="node-date">2024.12</div>
+                    <div class="node-content">研究 Agent 工作流框架</div>
+                </div>
+
+                <!-- 动态节点2 -->
+                <div class="meridian-node">
+                    <div class="node-dot"></div>
+                    <div class="node-date">2025.01</div>
+                    <div class="node-content">精读《道德经》与认知科学</div>
+                </div>
+
+                <!-- 动态节点3：未来 -->
+                <div class="meridian-node">
+                    <div class="node-dot"></div>
+                    <div class="node-date">NEXT</div>
+                    <div class="node-content future">探索仍在继续...</div>
+                </div>
+            </div>
+
+            <!-- 【调整位置】终章箴言（置于时间线后作为收束） -->
+            <div class="final-motto">
+                <p class="motto-text">路漫漫其修远兮，吾将上下而求索。</p>
+                <p class="motto-translation">The way ahead is long and has no ending; yet high and low I'll search with my will unbending.</p>
+            </div>
+
+            <!-- 归元按钮 -->
+            <div class="back-to-start">
+                <button class="btn-cycle" onclick="window.location.href='#home'">
+                    <span class="btn-icon">∞</span> 归元
+                </button>
+            </div>
+
+            <!-- 彩蛋提示 -->
+            <div class="egg-hint">
+                <p class="hint-text">* 向下探索，或许别有洞天。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 三个全屏空白缓冲节 -->
+    <section class="buffer-section scroll-trigger" data-buffer="1"></section>
+    <section class="buffer-section scroll-trigger" data-buffer="2"></section>
+    <section class="buffer-section scroll-trigger" data-buffer="3"></section>
+
+    <!-- 彩蛋章节本体 -->
+    <section class="easter-egg-section" id="easter-egg">
+        <div class="egg-content">
+            <h2 class="egg-title"> 彩蛋 · 见天地，见众生，见自己</h2>
+            <p class="egg-text">感谢你至此的探索。真正的创造，往往始于屏幕之外。</p>
+            <p class="egg-signature">—— 凌寒</p>
+            <button class="egg-close" onclick="resetEasterEgg()">收起</button>
+        </div>
+    </section>
+
+    <!-- 音频元素池 (预加载但隐藏) -->
+    <div id="audio-elements" style="display: none;">
+        <audio id="bgm" loop preload="auto">
+            <source src="assets/audio/bgm_ambient.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="sound-dao" preload="auto">
+            <source src="assets/audio/dao_enter.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="sound-fa" preload="auto">
+            <source src="assets/audio/fa_enter.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="sound-qi" preload="auto">
+            <source src="assets/audio/qi_enter.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="sound-tool-hover" preload="auto">
+            <source src="assets/audio/qi_tool_hover.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="sound-card-flip" preload="auto">
+            <source src="assets/audio/qi_card_flip.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- 音频控制面板 (固定左下角) -->
+    <div id="audio-controls" class="audio-controls">
+        <button id="bgm-toggle" class="audio-btn" title="切换背景音乐">
+            <span class="audio-icon">🔇</span>
+        </button>
+        <div class="volume-slider-container">
+            <input type="range" id="bgm-volume" class="volume-slider" min="0" max="1" step="0.1" value="0.3" title="背景音乐音量">
+        </div>
+        <span class="audio-hint">声景</span>
+    </div>
+
+    <!-- JavaScript 文件引入 -->
+    <script src="js/main.js"></script>
+    <script src="js/scroll.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/easter-egg.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/audio.js"></script>
+</body>
+</html>
+

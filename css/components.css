@@ -1,0 +1,1150 @@
+/* ============================================
+   Components - 组件样式
+   ============================================ */
+
+/* ========== 导航链接样式 ========== */
+.nav-link {
+    font-size: var(--font-size-body);
+    color: var(--color-gray-dark);
+    position: relative;
+    padding: var(--spacing-xs) 0;
+    transition: color var(--transition-normal);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-white);
+    transition: width var(--transition-normal);
+}
+
+.nav-link:hover {
+    color: var(--color-white);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link.active {
+    color: var(--color-white);
+    font-weight: var(--font-weight-medium);
+}
+
+/* ========== 按钮组件（如需要）========== */
+.btn {
+    display: inline-block;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-white);
+    background-color: var(--color-black);
+    border-radius: 4px;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: var(--color-gray-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* ========== 卡片组件（如需要）========== */
+.card {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    border-radius: 8px;
+    padding: var(--spacing-lg);
+    transition: all var(--transition-normal);
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
+}
+
+/* ========== 分隔线组件 ========== */
+.divider {
+    height: 1px;
+    background-color: var(--color-gray-light);
+    margin: var(--spacing-hero) 0;
+    border: none;
+}
+
+/* ========== 加载动画（如需要）========== */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--color-gray-light);
+    border-top-color: var(--color-black);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ========== 工具提示（如需要）========== */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip:hover::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background-color: var(--color-black);
+    color: var(--color-white);
+    font-size: var(--font-size-small);
+    white-space: nowrap;
+    border-radius: 4px;
+    margin-bottom: var(--spacing-xs);
+    z-index: 1000;
+}
+
+.tooltip:hover::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 4px solid transparent;
+    border-top-color: var(--color-black);
+    margin-bottom: -4px;
+}
+
+/* ============================================
+   道页面组件样式
+   ============================================ */
+
+/* 道页面导航链接 */
+.main-nav-link {
+    font-size: var(--font-size-body);
+    color: var(--color-gray-dark);
+    text-decoration: none;
+    position: relative;
+    padding: var(--spacing-xs) 0;
+    transition: color var(--transition-normal);
+}
+
+.main-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-primary);
+    transition: width var(--transition-normal);
+}
+
+.main-nav-link:hover {
+    color: var(--color-white);
+}
+
+.main-nav-link:hover::after,
+.main-nav-link.active::after {
+    width: 100%;
+}
+
+.main-nav-link.active {
+    color: var(--color-white);
+    font-weight: var(--font-weight-medium);
+}
+
+/* 太极图样式 */
+.taiji-img {
+    width: 400px;
+    height: auto;
+    max-width: 100%;
+    filter: drop-shadow(0 0 8px rgba(64, 224, 208, 0.7));
+    transition: transform var(--transition-normal), 
+                filter var(--transition-normal);
+    cursor: pointer;
+}
+
+.taiji-caption {
+    margin-top: var(--spacing-lg);
+    font-size: var(--font-size-body);
+    color: var(--color-gray-dark);
+    font-style: italic;
+}
+
+/* 箴言样式 */
+.saying-title {
+    font-size: var(--font-size-h1);
+    font-family: var(--font-title);
+    color: var(--color-white);
+    margin-bottom: var(--spacing-xl);
+    line-height: var(--line-height-relaxed);
+    font-weight: var(--font-weight-normal);
+}
+
+.saying-text-en {
+    font-size: var(--font-size-body);
+    color: var(--color-gray-dark);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-xxl);
+    font-style: italic;
+}
+
+/* 返回按钮 */
+.btn-return {
+    display: inline-block;
+    padding: var(--spacing-sm) var(--spacing-xl);
+    font-size: var(--font-size-body);
+    color: var(--color-white);
+    background-color: transparent;
+    border: 1px solid var(--color-primary);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+}
+
+.btn-return:hover {
+    background-color: var(--color-primary);
+    color: var(--color-black);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(64, 224, 208, 0.3);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .taiji-img {
+        width: 300px;
+    }
+    
+    .saying-title {
+        font-size: var(--font-size-h2);
+    }
+}
+
+/* ============================================
+   index.html 道章节组件样式
+   ============================================ */
+
+/* 道标题 */
+.dao-title {
+    font-size: 120px;
+    font-weight: var(--font-weight-normal);
+    color: var(--color-primary); /* 青蓝色 #40e0d0，与其他标题保持一致 */
+    margin-bottom: var(--spacing-xxl);
+    line-height: 1;
+    letter-spacing: 8px;
+    font-family: var(--font-title, var(--font-family));
+    text-align: center;
+}
+
+/* 箴言行 */
+.dao-sayings {
+    margin-bottom: var(--spacing-xl);
+}
+
+.dao-saying-line {
+    font-size: var(--font-size-h2);
+    color: var(--color-white);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-md);
+    letter-spacing: 2px;
+}
+
+/* 英文翻译 */
+.dao-saying-en {
+    font-size: var(--font-size-body);
+    color: var(--color-gray-dark);
+    font-style: italic;
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-xxl);
+    letter-spacing: 1px;
+}
+
+/* 道章节太极图样式 */
+.dao-taiji-img {
+    width: 400px;
+    height: auto;
+    max-width: 100%;
+    filter: drop-shadow(0 0 8px rgba(64, 224, 208, 0.7));
+    transition: transform var(--transition-normal), 
+                filter var(--transition-normal);
+    cursor: pointer;
+}
+
+.dao-taiji-img:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 20px rgba(64, 224, 208, 1));
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .dao-title {
+        font-size: 80px;
+        letter-spacing: 4px;
+    }
+    
+    .dao-saying-line {
+        font-size: var(--font-size-h3);
+    }
+    
+    .dao-taiji-img {
+        width: 300px;
+    }
+}
+
+/* ============================================
+   法章节组件样式
+   ============================================ */
+
+/* 法标题 */
+.fa-title {
+    font-size: 120px;
+    font-weight: var(--font-weight-normal);
+    color: var(--color-primary); /* 青蓝色 #40e0d0 */
+    margin-bottom: var(--spacing-xxl);
+    line-height: 1;
+    letter-spacing: 8px;
+    font-family: var(--font-title, var(--font-family));
+}
+
+/* 原则网格布局 - 三栏横向排列 */
+.fa-principles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-xl);
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+}
+
+/* 原则卡片 */
+.fa-principle-card {
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-xl);
+    text-align: left;
+    /* 默认完全可见，确保文本能显示 */
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: opacity var(--transition-slow) var(--transition-ease-out),
+                transform var(--transition-slow) var(--transition-ease-out);
+}
+
+/* 当法章节可见时，卡片依次显示（动画效果） */
+.fa-section.visible .fa-principle-card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fa-section.visible .fa-principle-card:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.fa-section.visible .fa-principle-card:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.fa-section.visible .fa-principle-card:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+/* 引用文字 */
+.fa-principle-quote {
+    font-size: var(--font-size-h3);
+    color: var(--color-white);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-md);
+    letter-spacing: 1px;
+}
+
+/* 描述文字 */
+.fa-principle-desc {
+    font-size: var(--font-size-body);
+    color: var(--color-gray-dark);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-md);
+}
+
+/* 英文翻译 */
+.fa-principle-en {
+    font-size: var(--font-size-small);
+    color: var(--color-gray);
+    font-style: italic;
+    line-height: var(--line-height-relaxed);
+    margin-top: auto; /* 推到底部 */
+}
+
+/* 响应式调整 */
+@media (max-width: 1024px) {
+    .fa-principles-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+}
+
+@media (max-width: 768px) {
+    .fa-title {
+        font-size: 80px;
+        letter-spacing: 4px;
+    }
+    
+    .fa-principle-card {
+        padding: var(--spacing-lg);
+    }
+    
+    .fa-principle-quote {
+        font-size: var(--font-size-h3);
+    }
+}
+
+/* ============================================
+   器章节组件样式
+   ============================================ */
+
+/* 器标题 */
+.qi-title {
+    font-size: 120px;
+    font-weight: var(--font-weight-normal);
+    color: var(--color-primary); /* 青蓝色 #40e0d0，与法标题保持一致 */
+    margin-bottom: var(--spacing-xxl);
+    line-height: 1;
+    letter-spacing: 8px;
+    font-family: var(--font-title, var(--font-family));
+    text-align: center;
+}
+
+/* 器章节副标题 */
+.qi-subtitle {
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-white);
+    margin-bottom: var(--spacing-xl);
+    letter-spacing: 2px;
+}
+
+/* 工具云容器 */
+.tools-cloud {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-xl);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-lg) 0;
+}
+
+/* 工具项 */
+.tool-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-lg);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    border-radius: 8px;
+}
+
+/* 工具图标 */
+.tool-icon {
+    font-size: 48px;
+    margin-bottom: var(--spacing-sm);
+    transition: transform var(--transition-normal),
+                filter var(--transition-normal);
+    display: block;
+}
+
+/* 工具名称 */
+.tool-name {
+    font-size: var(--font-size-body);
+    color: var(--color-gray);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity var(--transition-normal),
+                transform var(--transition-normal),
+                color var(--transition-normal);
+}
+
+/* 工具项悬停效果 */
+.tool-item:hover .tool-icon {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 12px rgba(64, 224, 208, 0.8));
+}
+
+.tool-item:hover .tool-name {
+    opacity: 1;
+    transform: translateY(0);
+    color: var(--color-white);
+}
+
+/* 作品网格 */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-xl);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-lg) 0;
+}
+
+/* 项目卡片容器 - 3D翻转 */
+.project-card {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    perspective: 1000px; /* 3D透视 */
+    cursor: pointer;
+}
+
+/* 卡片内部容器 - 实现翻转 */
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease-in-out;
+}
+
+/* 卡片正面和背面 */
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* 隐藏背面 */
+    -webkit-backface-visibility: hidden; /* Safari兼容 */
+    border: 1px solid var(--color-gray-light);
+    border-radius: 8px;
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* 卡片正面 */
+.card-front {
+    background-color: transparent;
+    color: var(--color-white);
+}
+
+/* 卡片背面 */
+.card-back {
+    background-color: rgba(30, 30, 30, 0.95);
+    color: var(--color-white);
+    transform: rotateY(180deg); /* 初始状态背面翻转180度 */
+}
+
+/* 悬停时翻转卡片 */
+.project-card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* 项目标题 */
+.project-title {
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-white);
+    margin-bottom: var(--spacing-md);
+    line-height: var(--line-height-tight);
+}
+
+.project-continue {
+    font-size: var(--font-size-small);
+    color: var(--color-gray-dark);
+    font-style: italic;
+    font-weight: var(--font-weight-normal);
+}
+
+/* 项目状态 */
+.project-status {
+    font-size: var(--font-size-small);
+    color: var(--color-primary);
+    font-weight: var(--font-weight-medium);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border: 1px solid var(--color-primary);
+    border-radius: 4px;
+    display: inline-block;
+}
+
+/* 项目描述 */
+.project-desc {
+    font-size: var(--font-size-body);
+    color: var(--color-white);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* 项目标签 */
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    justify-content: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.project-tags span {
+    font-size: var(--font-size-small);
+    color: var(--color-gray-dark);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border: 1px solid var(--color-gray);
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+/* 项目提示 */
+.project-hint {
+    font-size: var(--font-size-small);
+    color: var(--color-gray);
+    font-style: italic;
+    margin-top: auto;
+}
+
+/* 响应式调整 */
+@media (max-width: 1024px) {
+    .tools-cloud {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-card {
+        height: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .qi-title {
+        font-size: 80px;
+        letter-spacing: 4px;
+    }
+    
+    .tools-cloud {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+    }
+    
+    .tool-icon {
+        font-size: 36px;
+    }
+    
+    .qi-subtitle {
+        font-size: var(--font-size-h3);
+    }
+}
+
+/* ============================================
+   术章节组件样式
+   ============================================ */
+
+/* 术标题 */
+.shu-title {
+    font-size: 120px;
+    font-weight: var(--font-weight-normal);
+    color: var(--color-primary); /* 青蓝色 #40e0d0，与其他标题保持一致 */
+    margin-bottom: var(--spacing-xxl);
+    line-height: 1;
+    letter-spacing: 8px;
+    font-family: var(--font-title, var(--font-family));
+    text-align: center;
+    /* 确保标题默认可见 */
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* 脉络时间线容器 */
+.meridian-timeline {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: var(--spacing-hero) auto;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-lg) 0;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* 中枢脉络线 */
+.meridian-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 2px;
+    /* 默认显示完整高度，动画作为增强效果 */
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        var(--color-primary) 10%,
+        var(--color-primary) 90%,
+        transparent 100%
+    );
+    box-shadow: 0 0 10px rgba(64, 224, 208, 0.8),
+                0 0 20px rgba(64, 224, 208, 0.4);
+    z-index: 1;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* 初始状态：高度为0，等待动画触发 */
+.shu-section:not(.visible) .meridian-line {
+    height: 0;
+}
+
+/* 时间线绘制动画 - 当章节可见时触发 */
+.shu-section.visible .meridian-line {
+    animation: drawMeridianLine 1s ease-out forwards,
+               breath 3s ease-in-out infinite 1s; /* 绘制完成后开始呼吸动画 */
+}
+
+/* 脉络节点 */
+.meridian-node {
+    position: relative;
+    width: 100%;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-xxl);
+    /* 强制可见 */
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+    visibility: visible !important;
+    transition: opacity var(--transition-slow) var(--transition-ease-out),
+                transform var(--transition-slow) var(--transition-ease-out);
+    z-index: 2;
+}
+
+/* 节点在时间线绘制后依次显示 */
+/* 注意：.meridian-line 是第一个子元素，所以节点是 nth-child(2), nth-child(3), nth-child(4) */
+.shu-section.visible .meridian-node:nth-child(2) {
+    animation: nodeFadeIn 0.8s ease-out 1.2s forwards;
+}
+
+.shu-section.visible .meridian-node:nth-child(3) {
+    animation: nodeFadeIn 0.8s ease-out 1.5s forwards;
+}
+
+.shu-section.visible .meridian-node:nth-child(4) {
+    animation: nodeFadeIn 0.8s ease-out 1.8s forwards;
+}
+
+/* 节点圆点 */
+.node-dot {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    box-shadow: 0 0 12px rgba(64, 224, 208, 1),
+                0 0 24px rgba(64, 224, 208, 0.6);
+    z-index: 3;
+    /* 呼吸光效 - 当章节可见时应用 */
+    animation: breath 2.5s ease-in-out infinite;
+}
+
+/* 节点显示后开始呼吸动画 */
+.shu-section.visible .meridian-node:nth-child(2) .node-dot {
+    animation: nodeFadeIn 0.8s ease-out 1.2s forwards,
+               breath 2.5s ease-in-out infinite 2s;
+}
+
+.shu-section.visible .meridian-node:nth-child(3) .node-dot {
+    animation: nodeFadeIn 0.8s ease-out 1.5s forwards,
+               breath 2.5s ease-in-out infinite 2.3s;
+}
+
+.shu-section.visible .meridian-node:nth-child(4) .node-dot {
+    animation: nodeFadeIn 0.8s ease-out 1.8s forwards,
+               breath 2.5s ease-in-out infinite 2.6s;
+}
+
+/* 节点日期 */
+.node-date {
+    position: absolute;
+    left: calc(50% - 120px);
+    font-size: var(--font-size-small);
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 1px;
+    white-space: nowrap;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* 节点内容 */
+.node-content {
+    position: absolute;
+    left: calc(50% + 40px);
+    font-size: var(--font-size-body);
+    color: var(--color-white);
+    line-height: var(--line-height-relaxed);
+    text-align: left;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.node-content.future {
+    color: var(--color-gray);
+    font-style: italic;
+}
+
+/* 终章箴言 */
+.final-motto {
+    margin-top: var(--spacing-hero);
+    margin-bottom: var(--spacing-xl);
+    /* 强制可见 */
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    visibility: visible !important;
+    transition: opacity var(--transition-slow) var(--transition-ease-out),
+                transform var(--transition-slow) var(--transition-ease-out);
+}
+
+/* 箴言在时间线动画完成后显示 */
+.shu-section.visible .final-motto {
+    animation: mottoFadeIn 1s ease-out 2.5s forwards;
+}
+
+.motto-text {
+    font-size: var(--font-size-h3);
+    color: var(--color-white);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-md);
+    letter-spacing: 2px;
+}
+
+.motto-translation {
+    font-size: var(--font-size-body);
+    color: var(--color-gray-dark);
+    font-style: italic;
+    line-height: var(--line-height-relaxed);
+    letter-spacing: 1px;
+}
+
+/* 归元按钮 */
+.back-to-start {
+    margin-top: var(--spacing-xl);
+    /* 强制可见 */
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    visibility: visible !important;
+    transition: opacity var(--transition-slow) var(--transition-ease-out),
+                transform var(--transition-slow) var(--transition-ease-out);
+}
+
+/* 按钮在箴言后显示 */
+.shu-section.visible .back-to-start {
+    animation: mottoFadeIn 1s ease-out 3s forwards;
+}
+
+.btn-cycle {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) var(--spacing-xl);
+    font-size: var(--font-size-body);
+    color: var(--color-white);
+    background-color: transparent;
+    border: 1px solid var(--color-primary);
+    border-radius: 24px;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    font-family: var(--font-family);
+    text-decoration: none;
+}
+
+.btn-cycle:hover {
+    background-color: var(--color-primary);
+    color: var(--color-black);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(64, 224, 208, 0.4);
+}
+
+.btn-icon {
+    font-size: 20px;
+    line-height: 1;
+}
+
+/* ============================================
+   彩蛋章节组件样式
+   ============================================ */
+
+/* 彩蛋标题 */
+.egg-title {
+    font-size: var(--font-size-h1);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xl);
+    line-height: var(--line-height-relaxed);
+    letter-spacing: 2px;
+}
+
+/* 彩蛋文本 */
+.egg-text {
+    font-size: var(--font-size-h3);
+    color: var(--color-white);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-lg);
+    letter-spacing: 1px;
+}
+
+/* 彩蛋签名 */
+.egg-signature {
+    font-size: var(--font-size-body);
+    color: var(--color-gray-dark);
+    font-style: italic;
+    margin-bottom: var(--spacing-xl);
+    letter-spacing: 1px;
+}
+
+/* 彩蛋关闭按钮 */
+.egg-close {
+    display: inline-block;
+    padding: var(--spacing-sm) var(--spacing-xl);
+    font-size: var(--font-size-body);
+    color: var(--color-white);
+    background-color: transparent;
+    border: 1px solid var(--color-gray);
+    border-radius: 24px;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    font-family: var(--font-family);
+}
+
+.egg-close:hover {
+    background-color: var(--color-gray);
+    color: var(--color-black);
+    transform: translateY(-2px);
+    border-color: var(--color-white);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .shu-title {
+        font-size: 80px;
+        letter-spacing: 4px;
+    }
+    
+    .meridian-timeline {
+        max-width: 100%;
+        padding: 0 var(--spacing-md);
+    }
+    
+    .node-date {
+        left: calc(50% - 100px);
+        font-size: var(--font-size-small);
+    }
+    
+    .node-content {
+        left: calc(50% + 30px);
+        font-size: var(--font-size-small);
+    }
+    
+    .motto-text {
+        font-size: var(--font-size-h4);
+    }
+    
+    .egg-title {
+        font-size: var(--font-size-h2);
+    }
+    
+    .egg-text {
+        font-size: var(--font-size-h4);
+    }
+}
+
+/* ============================================
+   粒子画布样式
+   ============================================ */
+
+/* 粒子画布：全屏、底层、不可交互 */
+.particles-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* 章节容器：为画布提供定位基准，内容在上层 */
+.dao-section, 
+.fa-section, 
+.qi-section, 
+.shu-section {
+    position: relative;
+}
+
+/* 确保章节内容在画布之上 */
+.dao-section-container,
+.fa-section-container,
+.qi-section-container,
+.shu-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* ============================================
+   音频控制系统样式
+   ============================================ */
+
+.audio-controls {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 12px 20px;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(64, 224, 208, 0.4);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.5s ease;
+}
+
+.audio-btn {
+    background: rgba(64, 224, 208, 0.1);
+    border: 1px solid rgba(64, 224, 208, 0.3);
+    color: #40e0d0;
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.audio-btn:hover {
+    background: rgba(64, 224, 208, 0.2);
+    transform: scale(1.05);
+    border-color: rgba(64, 224, 208, 0.6);
+}
+
+.audio-icon {
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.volume-slider-container {
+    width: 80px;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.volume-slider-container:hover {
+    opacity: 1;
+}
+
+.volume-slider {
+    width: 100%;
+    height: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #40e0d0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+    background: #50f0e0;
+    transform: scale(1.2);
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #40e0d0;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.volume-slider::-moz-range-thumb:hover {
+    background: #50f0e0;
+    transform: scale(1.2);
+}
+
+.audio-hint {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    font-family: var(--font-family);
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .audio-controls {
+        bottom: 10px;
+        left: 10px;
+        padding: 10px 15px;
+        gap: 10px;
+    }
+    
+    .volume-slider-container {
+        width: 60px;
+    }
+    
+    .audio-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .audio-hint {
+        font-size: 0.8rem;
+    }
+}
+

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="关于 - 凌宇而傲寒">
+    <title>关于 - 凌宇而傲寒</title>
+    
+    <!-- CSS 文件引入 -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <style>
+        /* 关于页面专用样式 */
+        .about-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--navbar-height) var(--spacing-lg) var(--spacing-hero);
+        }
+        
+        .about-container {
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .about-title {
+            font-size: 48px;
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--spacing-md);
+            color: var(--color-white);
+            letter-spacing: 2px;
+            line-height: var(--line-height-tight);
+        }
+        
+        .about-subtitle {
+            font-size: var(--font-size-body);
+            color: var(--color-gray-dark);
+            margin-bottom: var(--spacing-hero);
+            line-height: var(--line-height-relaxed);
+            font-style: italic;
+        }
+        
+        .about-content {
+            text-align: center;
+            margin-bottom: var(--spacing-xxl);
+        }
+        
+        .about-text {
+            font-size: 18px;
+            line-height: var(--line-height-relaxed);
+            color: var(--color-white);
+            margin-bottom: var(--spacing-lg);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .about-text-en {
+            font-size: 16px;
+            line-height: var(--line-height-relaxed);
+            color: var(--color-gray-dark);
+            margin-bottom: var(--spacing-xl);
+            font-style: italic;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: var(--spacing-hero);
+            font-size: var(--font-size-body);
+            color: var(--color-gray-dark);
+            transition: color var(--transition-normal);
+        }
+        
+        .back-link:hover {
+            color: var(--color-white);
+        }
+        
+        .back-link::before {
+            content: '← ';
+            margin-right: var(--spacing-xs);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .about-title {
+                font-size: 36px;
+            }
+            
+            .about-container {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <a href="index.html">个人网站</a>
+            </div>
+            <ul class="navbar-menu">
+                <li><a href="index.html#home" class="nav-link">首页</a></li>
+                <li><a href="about.html" class="nav-link active">关于</a></li>
+                <li><a href="contact.html" class="nav-link">联系</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 关于页面内容 -->
+    <div class="about-page">
+        <div class="about-container">
+            <!-- 标题 -->
+            <h1 class="about-title fade-in">凌宇而傲寒</h1>
+            <p class="about-subtitle fade-in-delay">Soaring beyond the sky, thriving in the cold.</p>
+            
+            <!-- 内容 -->
+            <div class="about-content fade-in-delay-2">
+                <p class="about-text">
+                    我们的心脏，是这智能纪元里最古老的源代码。
+                </p>
+                <p class="about-text-en">
+                    Our hearts are the most ancient source code in this age of intelligence.
+                </p>
+            </div>
+            
+            
+
+    <!-- JavaScript 文件引入 -->
+    <script src="js/main.js"></script>
+    <script src="js/scroll.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>
+

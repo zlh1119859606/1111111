@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="联系方式 - 凌寒 LING HAN">
+    <title>联系方式 - 凌寒 LING HAN</title>
+    
+    <!-- CSS 文件引入 -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <style>
+        /* 联系页面专用样式 */
+        .contact-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--navbar-height) var(--spacing-lg) var(--spacing-hero);
+        }
+        
+        .contact-container {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .contact-name {
+            font-size: 48px;
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--spacing-md);
+            color: var(--color-white);
+            letter-spacing: 4px;
+            font-family: monospace;
+        }
+        
+        .contact-subtitle {
+            font-size: var(--font-size-body);
+            color: var(--color-gray-dark);
+            margin-bottom: var(--spacing-hero);
+            letter-spacing: 2px;
+        }
+        
+        .contact-section {
+            margin-bottom: var(--spacing-xxl);
+            text-align: left;
+        }
+        
+        .contact-section-title {
+            font-size: var(--font-size-h3);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--spacing-lg);
+            color: var(--color-white);
+            text-align: center;
+            letter-spacing: 2px;
+            font-family: monospace;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-lg);
+            font-size: var(--font-size-body);
+            line-height: var(--line-height-relaxed);
+        }
+        
+        .contact-label {
+            min-width: 80px;
+            color: var(--color-gray-dark);
+            font-weight: var(--font-weight-medium);
+        }
+        
+        .contact-value {
+            flex: 1;
+            color: var(--color-white);
+        }
+        
+        .contact-value a {
+            color: var(--color-white);
+            transition: color var(--transition-normal);
+        }
+        
+        .contact-value a:hover {
+            color: var(--color-gray-dark);
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: var(--spacing-hero);
+            font-size: var(--font-size-body);
+            color: var(--color-gray-dark);
+            transition: color var(--transition-normal);
+        }
+        
+        .back-link:hover {
+            color: var(--color-white);
+        }
+        
+        .back-link::before {
+            content: '← ';
+            margin-right: var(--spacing-xs);
+        }
+        
+        @media (max-width: 768px) {
+            .contact-name {
+                font-size: 36px;
+            }
+            
+            .contact-item {
+                flex-direction: column;
+                gap: var(--spacing-xs);
+            }
+            
+            .contact-label {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <a href="index.html">个人网站</a>
+            </div>
+            <ul class="navbar-menu">
+                <li><a href="index.html#home" class="nav-link">首页</a></li>
+                <li><a href="about.html" class="nav-link">关于</a></li>
+                <li><a href="contact.html" class="nav-link active">联系</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 联系页面内容 -->
+    <div class="contact-page">
+        <div class="contact-container">
+            <!-- 姓名标题 -->
+            <h1 class="contact-name fade-in">━ 凌寒 LING HAN ━</h1>
+            <p class="contact-subtitle fade-in-delay">AI从业者 · 杭州</p>
+            
+            <!-- 联络方式 -->
+            <div class="contact-section fade-in-delay-2">
+                <h2 class="contact-section-title">━━ 联络方式 ━━</h2>
+                <div class="contact-item">
+                    <span class="contact-label">电话</span>
+                    <span class="contact-value">+86 186 3893 1695</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">邮箱</span>
+                    <span class="contact-value">
+                        <a href="mailto:1119859606@qq.com">1119859606@qq.com</a>
+                    </span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">微信</span>
+                    <span class="contact-value">二维码备用</span>
+                </div>
+            </div>
+            
+          
+    <!-- JavaScript 文件引入 -->
+    <script src="js/main.js"></script>
+    <script src="js/scroll.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>
+

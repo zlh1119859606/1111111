@@ -1,0 +1,324 @@
+/* ============================================
+   音频系统核心逻辑 - 沉浸式音频体验
+   ============================================ */
+
+// 等待 DOM 加载完成
+document.addEventListener('DOMContentLoaded', function() {
+    // 检查音频元素是否存在
+    const bgm = document.getElementById('bgm');
+    const soundDao = document.getElementById('sound-dao');
+    const soundFa = document.getElementById('sound-fa');
+    const soundQi = document.getElementById('sound-qi');
+    const soundToolHover = document.getElementById('sound-tool-hover');
+    const soundCardFlip = document.getElementById('sound-card-flip');
+
+    if (!bgm) {
+        console.warn('音频元素未找到，音频系统将无法工作');
+        return;
+    }
+
+    // ==================== 1. 背景音乐控制 ====================
+    const bgmToggleBtn = document.getElementById('bgm-toggle');
+    const bgmVolumeSlider = document.getElementById('bgm-volume');
+    const bgmIcon = bgmToggleBtn ? bgmToggleBtn.querySelector('.audio-icon') : null;
+    
+    if (bgmToggleBtn && bgmVolumeSlider && bgmIcon) {
+        // 初始化：静音，设置音量
+        bgm.muted = true;
+        bgm.volume = 0.3;
+        bgmVolumeSlider.value = bgm.volume;
+        bgmIcon.textContent = '🔇'; // 静音图标
+
+        // 音量控制
+        bgmVolumeSlider.addEventListener('input', function() {
+            bgm.volume = parseFloat(this.value);
+            // 如果取消静音且有音量，更新图标
+            if (!bgm.muted && bgm.volume > 0) {
+                bgmIcon.textContent = '🔊';
+            } else if (bgm.volume === 0) {
+                bgmIcon.textContent = '🔇';
+            }
+        });
+
+        // 静音/取消静音
+        bgmToggleBtn.addEventListener('click', function() {
+            bgm.muted = !bgm.muted;
+            
+            // 更新图标
+            if (bgm.muted || bgm.volume === 0) {
+                bgmIcon.textContent = '🔇';
+            } else {
+                bgmIcon.textContent = '🔊';
+            }
+            
+            // 如果取消静音且音乐暂停，尝试播放
+            if (!bgm.muted && bgm.paused && bgm.volume > 0) {
+                bgm.play().catch(e => {
+                    console.log('BGM播放被阻止:', e);
+                    // 如果自动播放被阻止，等待用户交互
+                });
+            }
+        });
+    }
+
+    // ==================== 2. 章节触发音效函数 ====================
+    function playSectionSound(sectionClass, audioElement, soundName) {
+        if (!audioElement) {
+            console.warn(`音频元素不存在: ${soundName}`);
+            return;
+        }
+        
+        // 记录是否已播放，避免重复触发
+        let hasPlayed = false;
+        
+        // 检查音频文件是否加载成功
+        audioElement.addEventListener('canplaythrough', function() {
+            console.log(`音频文件已加载: ${soundName}`);
+        }, { once: true });
+        
+        audioElement.addEventListener('error', function(e) {
+            console.error(`音频文件加载失败: ${soundName}`, e);
+            console.error(`文件路径: ${audioElement.querySelector('source')?.src || '未知'}`);
+        }, { once: true });
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // 当章节50%以上进入视口时触发
+                if (entry.isIntersecting && entry.intersectionRatio > 0.5 && !hasPlayed) {
+                    hasPlayed = true;
+                    console.log(`触发章节音效: ${soundName}`);
+                    
+                    // 重置并播放音效
+                    audioElement.currentTime = 0;
+                    audioElement.volume = 0.6; // 章节音效音量
+                    audioElement.muted = false; // 确保未静音
+                    
+                    const playPromise = audioElement.play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            console.log(`音效播放成功: ${soundName}`);
+                        }).catch(e => {
+                            console.error(`音效播放失败: ${soundName}`, e);
+                            console.log('提示: 可能需要用户交互后才能播放音频');
+                        });
+                    }
+                    
+                    // 播放完成后，允许再次触发（如果用户滚动回来）
+                    audioElement.addEventListener('ended', function resetPlayFlag() {
+                        hasPlayed = false;
+                        audioElement.removeEventListener('ended', resetPlayFlag);
+                    }, { once: true });
+                } else if (!entry.isIntersecting && entry.intersectionRatio < 0.3) {
+                    // 当章节离开视口时，重置播放标志
+                    hasPlayed = false;
+                }
+            });
+        }, { 
+            threshold: [0.3, 0.5, 0.7] // 多个阈值，更精确的触发
+        });
+
+        const section = document.querySelector(sectionClass);
+        if (section) {
+            observer.observe(section);
+            console.log(`已监听章节: ${sectionClass} (${soundName})`);
+        } else {
+            console.warn(`章节 ${sectionClass} 未找到`);
+        }
+    }
+
+    // 为四个章节绑定触发音效
+    if (soundDao) {
+        soundDao.muted = false; // 确保未静音
+        playSectionSound('.dao-section', soundDao, 'dao_enter');
+    }
+    if (soundFa) {
+        soundFa.muted = false;
+        playSectionSound('.fa-section', soundFa, 'fa_enter');
+    }
+    if (soundQi) {
+        soundQi.muted = false;
+        playSectionSound('.qi-section', soundQi, 'qi_enter');
+    }
+    // 术章节暂时没有音效，可根据需要添加
+
+    // ==================== 3. 交互音效绑定 ====================
+    
+    // 工具悬停音效
+    if (soundToolHover) {
+        soundToolHover.muted = false; // 确保未静音
+        const toolItems = document.querySelectorAll('.tool-item');
+        console.log(`找到 ${toolItems.length} 个工具项`);
+        toolItems.forEach(tool => {
+            tool.addEventListener('mouseenter', () => {
+                console.log('工具悬停音效触发');
+                soundToolHover.currentTime = 0;
+                soundToolHover.volume = 0.3;
+                soundToolHover.muted = false;
+                const playPromise = soundToolHover.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(e => {
+                        console.error('工具悬停音效播放失败:', e);
+                    });
+                }
+            });
+        });
+    } else {
+        console.warn('工具悬停音效元素未找到');
+    }
+
+    // 卡片翻转音效
+    if (soundCardFlip) {
+        soundCardFlip.muted = false; // 确保未静音
+        const projectCards = document.querySelectorAll('.project-card');
+        console.log(`找到 ${projectCards.length} 个项目卡片`);
+        projectCards.forEach(card => {
+            let isFlipped = false;
+            card.addEventListener('mouseenter', () => {
+                if (!isFlipped) {
+                    isFlipped = true;
+                    console.log('卡片翻转音效触发');
+                    soundCardFlip.currentTime = 0;
+                    soundCardFlip.volume = 0.4;
+                    soundCardFlip.muted = false;
+                    const playPromise = soundCardFlip.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(e => {
+                            console.error('卡片翻转音效播放失败:', e);
+                        });
+                    }
+                }
+            });
+            card.addEventListener('mouseleave', () => {
+                // 重置翻转状态，允许再次播放
+                setTimeout(() => {
+                    isFlipped = false;
+                }, 500);
+            });
+        });
+    } else {
+        console.warn('卡片翻转音效元素未找到');
+    }
+
+    // ==================== 4. 解决浏览器自动播放策略 ====================
+    // 页面首次交互后解锁音频
+    let audioUnlocked = false;
+    function unlockAudioOnFirstInteraction() {
+        if (!audioUnlocked) {
+            audioUnlocked = true;
+            console.log('音频已解锁（用户交互后）');
+            
+            // 解锁所有音频元素
+            const allAudioElements = [bgm, soundDao, soundFa, soundQi, soundToolHover, soundCardFlip];
+            allAudioElements.forEach(audio => {
+                if (audio) {
+                    audio.muted = false;
+                }
+            });
+            
+            if (bgm && bgm.muted) {
+                bgm.muted = false;
+                if (bgmIcon) {
+                    bgmIcon.textContent = '🔊';
+                }
+                // 尝试播放背景音乐
+                bgm.play().catch(e => {
+                    console.log('首次交互后BGM播放被阻止:', e);
+                });
+            }
+        }
+    }
+    
+    // 添加多种首次交互监听（只触发一次）
+    ['click', 'scroll', 'keydown', 'touchstart'].forEach(event => {
+        document.addEventListener(event, unlockAudioOnFirstInteraction, { once: true, passive: true });
+    });
+    
+    // 立即解锁（用于测试，实际使用时可以注释掉）
+    // unlockAudioOnFirstInteraction();
+
+    // ==================== 5. 音频加载错误处理和调试信息 ====================
+    const audioElements = [
+        { element: bgm, name: 'BGM' },
+        { element: soundDao, name: '道章节音效' },
+        { element: soundFa, name: '法章节音效' },
+        { element: soundQi, name: '器章节音效' },
+        { element: soundToolHover, name: '工具悬停音效' },
+        { element: soundCardFlip, name: '卡片翻转音效' }
+    ];
+    
+    audioElements.forEach(({ element, name }) => {
+        if (element) {
+            // 确保所有音效未静音
+            element.muted = false;
+            
+            // 检查加载状态
+            element.addEventListener('loadeddata', function() {
+                console.log(`✓ ${name} 已加载`);
+            }, { once: true });
+            
+            element.addEventListener('error', function(e) {
+                console.error(`✗ ${name} 加载失败:`, e);
+                const source = element.querySelector('source');
+                if (source) {
+                    console.error(`  文件路径: ${source.src}`);
+                    console.error(`  提示: 请检查文件是否存在，路径是否正确`);
+                }
+            }, { once: true });
+            
+            // 检查文件是否存在（通过尝试加载）
+            if (element.readyState === 0) {
+                element.load(); // 强制加载
+            }
+        } else {
+            console.warn(`音频元素不存在: ${name}`);
+        }
+    });
+
+    console.log('音频系统已初始化');
+    console.log('提示: 如果音效没有声音，请检查：');
+    console.log('1. 音频文件是否存在于 assets/audio/ 目录');
+    console.log('2. 文件名是否完全匹配（区分大小写）');
+    console.log('3. 浏览器控制台是否有错误信息');
+    console.log('4. 是否进行了用户交互（点击、滚动等）');
+    
+    // 延迟检查音频文件加载状态（2秒后）
+    setTimeout(function() {
+        console.log('\n=== 音频文件加载状态检查 ===');
+        const audioFiles = [
+            { id: 'bgm', name: 'bgm_ambient.mp3' },
+            { id: 'sound-dao', name: 'dao_enter.mp3' },
+            { id: 'sound-fa', name: 'fa_enter.mp3' },
+            { id: 'sound-qi', name: 'qi_enter.mp3' },
+            { id: 'sound-tool-hover', name: 'qi_tool_hover.mp3' },
+            { id: 'sound-card-flip', name: 'qi_card_flip.mp3' }
+        ];
+        
+        audioFiles.forEach(({ id, name }) => {
+            const audio = document.getElementById(id);
+            if (audio) {
+                const source = audio.querySelector('source');
+                if (source) {
+                    console.log(`\n${name}:`);
+                    console.log(`  路径: ${source.src}`);
+                    console.log(`  就绪状态: ${audio.readyState} (0=无数据, 1=元数据, 2=当前数据, 3=未来数据, 4=全部数据)`);
+                    if (audio.error) {
+                        console.error(`  ✗ 错误: ${audio.error.message}`);
+                        console.error(`  ✗ 错误代码: ${audio.error.code}`);
+                        if (audio.error.code === 4) {
+                            console.error(`  ✗ 文件不存在或无法访问`);
+                        }
+                    } else if (audio.readyState >= 2) {
+                        console.log(`  ✓ 已加载 (就绪状态: ${audio.readyState})`);
+                    } else {
+                        console.warn(`  ⚠ 未加载或加载中 (就绪状态: ${audio.readyState})`);
+                        console.warn(`  ⚠ 可能原因: 文件不存在或路径错误`);
+                    }
+                }
+            } else {
+                console.error(`  ✗ 音频元素不存在: ${id}`);
+            }
+        });
+        console.log('\n=== 检查完成 ===');
+    }, 2000);
+});
+
