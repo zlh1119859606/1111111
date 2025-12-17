@@ -6,6 +6,18 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('网站已加载');
     
+    // 强制滚动到顶部，确保显示英雄界面
+    window.scrollTo(0, 0);
+    
+    // 检查并清除URL哈希（如果不是 #home）
+    const hash = window.location.hash;
+    if (hash && hash !== '#home' && hash !== '') {
+        // 清除哈希，回到顶部
+        window.history.replaceState(null, null, window.location.pathname);
+        window.scrollTo(0, 0);
+        console.log('已清除URL哈希:', hash);
+    }
+    
     // 初始化所有功能
     initNavbar();
     initSmoothScroll();
@@ -102,6 +114,23 @@ function handlePageLoad() {
     console.log('页面初始化完成');
 }
 
+// 页面完全加载后，再次确保滚动到顶部
+window.addEventListener('load', function() {
+    // 清除历史滚动位置，强制滚动到顶部
+    window.scrollTo(0, 0);
+    
+    // 再次检查URL哈希
+    const hash = window.location.hash;
+    if (hash && hash !== '#home' && hash !== '') {
+        // 清除哈希，回到顶部
+        window.history.replaceState(null, null, window.location.pathname);
+        window.scrollTo(0, 0);
+        console.log('页面加载完成后已清除URL哈希:', hash);
+    }
+    
+    console.log('页面完全加载，已重置滚动位置');
+});
+
 /**
  * 工具函数：节流
  * 限制函数执行频率
@@ -139,4 +168,5 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 }
+
 

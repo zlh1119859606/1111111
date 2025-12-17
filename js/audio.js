@@ -86,6 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // 当章节50%以上进入视口时触发
                 if (entry.isIntersecting && entry.intersectionRatio > 0.5 && !hasPlayed) {
                     hasPlayed = true;
+                    console.log(`尝试播放: ${soundName}`);
                     console.log(`触发章节音效: ${soundName}`);
                     
                     // 重置并播放音效
@@ -150,6 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log(`找到 ${toolItems.length} 个工具项`);
         toolItems.forEach(tool => {
             tool.addEventListener('mouseenter', () => {
+                console.log('尝试播放: qi_tool_hover');
                 console.log('工具悬停音效触发');
                 soundToolHover.currentTime = 0;
                 soundToolHover.volume = 0.3;
@@ -176,6 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
             card.addEventListener('mouseenter', () => {
                 if (!isFlipped) {
                     isFlipped = true;
+                    console.log('尝试播放: qi_card_flip');
                     console.log('卡片翻转音效触发');
                     soundCardFlip.currentTime = 0;
                     soundCardFlip.volume = 0.4;
@@ -208,10 +211,24 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('音频已解锁（用户交互后）');
             
             // 解锁所有音频元素
-            const allAudioElements = [bgm, soundDao, soundFa, soundQi, soundToolHover, soundCardFlip];
-            allAudioElements.forEach(audio => {
-                if (audio) {
-                    audio.muted = false;
+            const allAudioElements = [
+                { element: bgm, name: 'BGM' },
+                { element: soundDao, name: 'dao_enter' },
+                { element: soundFa, name: 'fa_enter' },
+                { element: soundQi, name: 'qi_enter' },
+                { element: soundToolHover, name: 'qi_tool_hover' },
+                { element: soundCardFlip, name: 'qi_card_flip' }
+            ];
+            
+            // 解锁并激活所有音频元素
+            allAudioElements.forEach(({ element, name }) => {
+                if (element) {
+                    element.muted = false;
+                    // 主动尝试播放一次以"激活"音频元素（静默捕获错误）
+                    element.play().catch(e => {
+                        // 静默捕获错误，不输出到控制台，这只是为了激活音频元素
+                    });
+                    console.log(`已激活音频元素: ${name}`);
                 }
             });
             
