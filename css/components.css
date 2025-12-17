@@ -1148,3 +1148,153 @@
     }
 }
 
+/* ============================================
+   英雄区域哲学箴言样式 - 线性光扫描效果
+   ============================================ */
+
+/* 箴言容器 - 绝对居中定位（眼球中心位置） */
+.eye-question {
+    position: absolute;
+    top: 24.5%; /* 向上移动到眼球中间位置（从45%向上移动约1/3屏幕） */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1; /* 在背景图之上，但在轮播内容之下 */
+    pointer-events: none; /* 不阻挡交互 */
+    opacity: 0.95;
+    /* 移除呼吸和浮动动画，改用光扫描效果 */
+    overflow: hidden; /* 确保伪元素不溢出 */
+    /* 为伪元素提供定位上下文，使用内部相对定位 */
+}
+
+/* 中文主标题 */
+.eye-question-zh {
+    font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 48px;
+    font-weight: 300; /* 纤细字重 */
+    color: #e0f7fa; /* 青白色 */
+    line-height: 1.4;
+    margin: 0 0 16px 0;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(64, 224, 208, 0.7),
+                 0 0 40px rgba(64, 224, 208, 0.5),
+                 0 0 60px rgba(64, 224, 208, 0.3);
+    filter: drop-shadow(0 0 8px rgba(64, 224, 208, 0.7));
+    position: relative; /* 确保在伪元素之上 */
+    z-index: 2;
+    transition: text-shadow 0.3s ease, filter 0.3s ease;
+}
+
+/* 英文副标题 */
+.eye-question-en {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 20px;
+    font-weight: 400;
+    font-style: italic;
+    color: #e0f7fa;
+    line-height: 1.6;
+    margin: 0;
+    letter-spacing: 1px;
+    opacity: 0.85;
+    text-shadow: 0 0 15px rgba(64, 224, 208, 0.6),
+                 0 0 30px rgba(64, 224, 208, 0.4);
+    filter: drop-shadow(0 0 6px rgba(64, 224, 208, 0.6));
+    position: relative; /* 确保在伪元素之上 */
+    z-index: 2;
+    transition: text-shadow 0.3s ease, filter 0.3s ease;
+}
+
+/* 线性光扫描效果 - 使用伪元素 */
+.eye-question::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        120deg,
+        transparent 0%,
+        transparent 30%,
+        rgba(64, 224, 208, 0.3) 40%,
+        rgba(64, 224, 208, 0.7) 50%,
+        rgba(64, 224, 208, 0.3) 60%,
+        transparent 70%,
+        transparent 100%
+    );
+    background-size: 200% 200%;
+    background-position: -100% -100%;
+    animation: lightScan 3s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: screen; /* 混合模式增强光效 */
+    will-change: background-position;
+}
+
+/* 光扫描动画 - 从左上到右下 */
+@keyframes lightScan {
+    0% {
+        background-position: -100% -100%;
+    }
+    100% {
+        background-position: 200% 200%;
+    }
+}
+
+/* 光带扫过时增强文字发光效果 */
+@keyframes textGlowEnhance {
+    0%, 100% {
+        text-shadow: 0 0 20px rgba(64, 224, 208, 0.7),
+                     0 0 40px rgba(64, 224, 208, 0.5),
+                     0 0 60px rgba(64, 224, 208, 0.3);
+        filter: drop-shadow(0 0 8px rgba(64, 224, 208, 0.7));
+    }
+    45%, 55% {
+        text-shadow: 0 0 30px rgba(64, 224, 208, 0.9),
+                     0 0 50px rgba(64, 224, 208, 0.7),
+                     0 0 80px rgba(64, 224, 208, 0.5);
+        filter: drop-shadow(0 0 12px rgba(64, 224, 208, 0.9));
+    }
+}
+
+/* 为中文标题添加同步发光增强 */
+.eye-question-zh {
+    animation: textGlowEnhance 3s linear infinite;
+}
+
+/* 为英文副标题添加同步发光增强（稍弱） */
+.eye-question-en {
+    animation: textGlowEnhance 3s linear infinite;
+    animation-delay: 0.1s; /* 略微延迟，增强层次感 */
+}
+
+/* 响应式设计 - 移动设备 */
+@media (max-width: 768px) {
+    .eye-question-zh {
+        font-size: 32px;
+        letter-spacing: 1px;
+        margin-bottom: 12px;
+    }
+    
+    .eye-question-en {
+        font-size: 16px;
+        letter-spacing: 0.5px;
+    }
+    
+    .eye-question {
+        padding: 0 20px; /* 左右留白 */
+    }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 480px) {
+    .eye-question-zh {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+    
+    .eye-question-en {
+        font-size: 14px;
+    }
+}
+

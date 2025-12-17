@@ -4,8 +4,6 @@
 
 // 等待 DOM 加载完成
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('网站已加载');
-    
     // 强制滚动到顶部，确保显示英雄界面
     window.scrollTo(0, 0);
     
@@ -15,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // 清除哈希，回到顶部
         window.history.replaceState(null, null, window.location.pathname);
         window.scrollTo(0, 0);
-        console.log('已清除URL哈希:', hash);
     }
     
     // 初始化所有功能
@@ -111,7 +108,6 @@ function handlePageLoad() {
     document.body.classList.add('loaded');
     
     // 可以在这里添加其他初始化逻辑
-    console.log('页面初始化完成');
 }
 
 // 页面完全加载后，再次确保滚动到顶部
@@ -125,10 +121,7 @@ window.addEventListener('load', function() {
         // 清除哈希，回到顶部
         window.history.replaceState(null, null, window.location.pathname);
         window.scrollTo(0, 0);
-        console.log('页面加载完成后已清除URL哈希:', hash);
     }
-    
-    console.log('页面完全加载，已重置滚动位置');
 });
 
 /**

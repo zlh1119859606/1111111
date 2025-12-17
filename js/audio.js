@@ -17,7 +17,7 @@ function fixAudioPaths() {
             // 相对路径，转换为绝对路径
             const newSrc = basePath + (basePath.endsWith('/') ? '' : '/') + src.replace(/^\.\//, '');
             source.setAttribute('src', newSrc);
-            console.log(`路径修复: ${src} -> ${newSrc}`);
+            // 路径已修复（生产环境不输出日志）
         }
     });
 }
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // 检查音频文件是否加载成功
         audioElement.addEventListener('canplaythrough', function() {
-            console.log(`音频文件已加载: ${soundName}`);
+                // 音频文件已加载
         }, { once: true });
         
         audioElement.addEventListener('error', function(e) {
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 audioElement.play().catch(() => {});
                 audioElement.pause();
                 audioElement.currentTime = 0;
-                console.log(`音频元素已激活: ${soundName}`);
+                // 音频元素已激活
             }
         }
         
@@ -137,8 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     activateAudio();
                     
                     hasPlayed = true;
-                    console.log(`尝试播放: ${soundName}`);
-                    console.log(`触发章节音效: ${soundName} (intersectionRatio: ${entry.intersectionRatio.toFixed(2)})`);
+                    // 触发章节音效
                     
                     // 重置并播放音效
                     audioElement.currentTime = 0;
@@ -148,10 +147,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     const playPromise = audioElement.play();
                     if (playPromise !== undefined) {
                         playPromise.then(() => {
-                            console.log(`✓ 音效播放成功: ${soundName}`);
+                            // 音效播放成功
                         }).catch(e => {
                             console.error(`✗ 音效播放失败: ${soundName}`, e);
-                            console.log('提示: 可能需要用户交互后才能播放音频');
+                            // 提示: 可能需要用户交互后才能播放音频
                         });
                     }
                     
@@ -173,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const section = document.querySelector(sectionClass);
         if (section) {
             observer.observe(section);
-            console.log(`已监听章节: ${sectionClass} (${soundName})`);
+            // 已监听章节音效
         } else {
             console.warn(`章节 ${sectionClass} 未找到`);
         }
@@ -207,11 +206,10 @@ document.addEventListener('DOMContentLoaded', function() {
     if (soundToolHover) {
         soundToolHover.muted = false; // 确保未静音
         const toolItems = document.querySelectorAll('.tool-item');
-        console.log(`找到 ${toolItems.length} 个工具项`);
+        // 工具项已绑定
         toolItems.forEach(tool => {
             tool.addEventListener('mouseenter', () => {
-                console.log('尝试播放: qi_tool_hover');
-                console.log('工具悬停音效触发');
+                // 工具悬停音效触发
                 soundToolHover.currentTime = 0;
                 soundToolHover.volume = 0.3;
                 soundToolHover.muted = false;
@@ -231,14 +229,13 @@ document.addEventListener('DOMContentLoaded', function() {
     if (soundCardFlip) {
         soundCardFlip.muted = false; // 确保未静音
         const projectCards = document.querySelectorAll('.project-card');
-        console.log(`找到 ${projectCards.length} 个项目卡片`);
+        // 项目卡片已绑定
         projectCards.forEach(card => {
             let isFlipped = false;
             card.addEventListener('mouseenter', () => {
                 if (!isFlipped) {
                     isFlipped = true;
-                    console.log('尝试播放: qi_card_flip');
-                    console.log('卡片翻转音效触发');
+                    // 卡片翻转音效触发
                     soundCardFlip.currentTime = 0;
                     soundCardFlip.volume = 0.4;
                     soundCardFlip.muted = false;
@@ -267,7 +264,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function unlockAudioOnFirstInteraction() {
         if (!audioUnlocked) {
             audioUnlocked = true;
-            console.log('🎵 音频已解锁（用户交互后）');
+            // 音频已解锁（用户交互后）
             
             // 解锁所有音频元素
             const allAudioElements = [
@@ -304,7 +301,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 element.pause();
                                 element.currentTime = 0;
                             }
-                            console.log(`✓ 已激活音频元素: ${name}`);
+                            // 音频元素已激活
                         }).catch(err => {
                             console.warn(`⚠ 音频元素激活失败: ${name}`, err.message);
                             // 即使失败也标记为已尝试激活
@@ -328,7 +325,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 // 尝试播放背景音乐
                 bgm.play().then(() => {
-                    console.log('✓ BGM 自动播放成功');
+                    // BGM 自动播放成功
                 }).catch(e => {
                     console.warn('⚠ BGM 自动播放被阻止:', e.message);
                     console.log('提示: 请点击左下角的音频控制按钮手动播放');
@@ -348,9 +345,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.addEventListener(event, unlockAudioOnFirstInteraction, { once: true, passive: true });
     });
     
-    // 立即解锁（用于测试，实际使用时可以注释掉）
-    // unlockAudioOnFirstInteraction();
-
     // ==================== 5. 音频加载错误处理和调试信息 ====================
     const audioElements = [
         { element: bgm, name: 'BGM' },
@@ -368,7 +362,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // 检查加载状态
             element.addEventListener('loadeddata', function() {
-                console.log(`✓ ${name} 已加载`);
+                // 音频已加载
             }, { once: true });
             
             element.addEventListener('error', function(e) {
@@ -389,16 +383,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    console.log('音频系统已初始化');
-    console.log('提示: 如果音效没有声音，请检查：');
-    console.log('1. 音频文件是否存在于 assets/audio/ 目录');
-    console.log('2. 文件名是否完全匹配（区分大小写）');
-    console.log('3. 浏览器控制台是否有错误信息');
-    console.log('4. 是否进行了用户交互（点击、滚动等）');
+    // 音频系统已初始化
     
     // 延迟检查音频文件加载状态（2秒后）
     setTimeout(function() {
-        console.log('\n=== 音频文件加载状态检查 ===');
+        // 音频文件加载状态检查
         const audioFiles = [
             { id: 'bgm', name: 'bgm_ambient.mp3' },
             { id: 'sound-dao', name: 'dao_enter.mp3' },
@@ -413,108 +402,20 @@ document.addEventListener('DOMContentLoaded', function() {
             if (audio) {
                 const source = audio.querySelector('source');
                 if (source) {
-                    console.log(`\n${name}:`);
-                    console.log(`  路径: ${source.src}`);
-                    console.log(`  就绪状态: ${audio.readyState} (0=无数据, 1=元数据, 2=当前数据, 3=未来数据, 4=全部数据)`);
                     if (audio.error) {
-                        console.error(`  ✗ 错误: ${audio.error.message}`);
-                        console.error(`  ✗ 错误代码: ${audio.error.code}`);
+                        console.error(`✗ ${name} 加载失败:`, audio.error.message);
                         if (audio.error.code === 4) {
-                            console.error(`  ✗ 文件不存在或无法访问`);
+                            console.error(`  文件不存在或无法访问: ${source.src}`);
                         }
-                    } else if (audio.readyState >= 2) {
-                        console.log(`  ✓ 已加载 (就绪状态: ${audio.readyState})`);
-                    } else {
-                        console.warn(`  ⚠ 未加载或加载中 (就绪状态: ${audio.readyState})`);
-                        console.warn(`  ⚠ 可能原因: 文件不存在或路径错误`);
+                    } else if (audio.readyState < 2) {
+                        console.warn(`⚠ ${name} 未完全加载 (就绪状态: ${audio.readyState})`);
                     }
                 }
             } else {
                 console.error(`  ✗ 音频元素不存在: ${id}`);
             }
         });
-        console.log('\n=== 检查完成 ===');
+        // 检查完成
     }, 2000);
-    
-    // ==================== 6. 可视化调试面板（可选） ====================
-    // 在开发环境或需要调试时，取消注释以下代码
-    /*
-    function createDebugPanel() {
-        const panel = document.createElement('div');
-        panel.id = 'audio-debug-panel';
-        panel.style.cssText = `
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.85);
-            color: #40e0d0;
-            padding: 15px;
-            border-radius: 8px;
-            font-family: monospace;
-            font-size: 12px;
-            z-index: 10000;
-            min-width: 200px;
-            border: 1px solid #40e0d0;
-            box-shadow: 0 4px 12px rgba(64, 224, 208, 0.3);
-        `;
-        
-        const status = document.createElement('div');
-        status.id = 'audio-debug-status';
-        status.textContent = '音频状态: 检查中...';
-        status.style.marginBottom = '10px';
-        
-        const activateBtn = document.createElement('button');
-        activateBtn.textContent = '🔓 激活音频';
-        activateBtn.style.cssText = `
-            background: #40e0d0;
-            color: #000;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 8px;
-            font-weight: bold;
-        `;
-        activateBtn.onclick = () => {
-            if (window.activateAllAudio) {
-                window.activateAllAudio();
-            } else {
-                unlockAudioOnFirstInteraction();
-            }
-        };
-        
-        const testBtn = document.createElement('button');
-        testBtn.textContent = '🧪 运行诊断';
-        testBtn.style.cssText = activateBtn.style.cssText;
-        testBtn.style.marginTop = '5px';
-        testBtn.onclick = () => {
-            if (window.debugAudioSystem) {
-                window.debugAudioSystem();
-            } else {
-                console.log('调试工具未加载，请确保 audio-debug.js 已引入');
-            }
-        };
-        
-        panel.appendChild(status);
-        panel.appendChild(activateBtn);
-        panel.appendChild(testBtn);
-        document.body.appendChild(panel);
-        
-        // 更新状态
-        setTimeout(() => {
-            const allLoaded = audioElements.every(({ element }) => 
-                element && element.readyState >= 2 && !element.error
-            );
-            status.textContent = allLoaded 
-                ? '✅ 音频状态: 就绪' 
-                : '⚠️ 音频状态: 部分异常';
-            status.style.color = allLoaded ? '#40e0d0' : '#ff6b6b';
-        }, 3000);
-    }
-    
-    // 取消注释以启用调试面板
-    // createDebugPanel();
-    */
 });
 

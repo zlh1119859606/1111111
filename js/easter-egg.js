@@ -47,7 +47,7 @@ function initEasterEgg() {
                     triggeredBuffers.add(bufferId);
                     scrollCount++;
                     
-                    console.log(`缓冲节 ${bufferId} 已触发，当前计数: ${scrollCount}`);
+                    // 缓冲节已触发
                     
                     // 检查是否达到解锁条件
                     if (scrollCount >= 3 && !isUnlocked) {
@@ -63,7 +63,7 @@ function initEasterEgg() {
         observer.observe(section);
     });
     
-    console.log('彩蛋系统已初始化，等待用户滚动触发...');
+    // 彩蛋系统已初始化
 }
 
 /**
@@ -82,7 +82,7 @@ function unlockEasterEgg() {
     isUnlocked = true;
     easterEggSection.classList.add('is-unlocked');
     
-    console.log('🎉 彩蛋已解锁！');
+    // 彩蛋已解锁
     
     // 可选：添加一些额外的视觉效果
     // 例如：播放音效、添加粒子效果等
@@ -105,7 +105,7 @@ function resetEasterEgg() {
     triggeredBuffers.clear();
     isUnlocked = false;
     
-    console.log('彩蛋已重置');
+    // 彩蛋已重置
     
     // 平滑滚动到术章节
     const shuSection = document.getElementById('shu');
@@ -126,6 +126,7 @@ window.addEventListener('load', function() {
         initEasterEgg();
     }, 100);
 });
+
 
 
 
