@@ -7,9 +7,17 @@
     <meta name="description" content="个人网站 - 极简风格的个人展示">
     <title>个人网站</title>
     
-    <!-- Google 字体引入 -->
+    <!-- 资源预连接 - 优化字体和CDN加载 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    
+    <!-- 关键资源预加载 -->
+    <link rel="preload" href="assets/images/background-eye.png" as="image">
+    <link rel="preload" href="assets/images/hero-01.png" as="image">
+    <link rel="preload" href="assets/audio/bgm_ambient.mp3" as="audio">
+    
+    <!-- Google 字体引入 -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     
     <!-- CSS 文件引入 -->
@@ -19,10 +27,14 @@
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/animations.css">
     
-    <!-- tsParticles 库 -->
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.3.4/tsparticles.bundle.min.js"></script>
+    <!-- tsParticles 库 - 延迟加载 -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.3.4/tsparticles.bundle.min.js" defer></script>
 </head>
 <body>
+    <!-- 加载指示器 -->
+    <div id="page-loader" class="page-loader">
+        <div class="loader-taiji"></div>
+    </div>
     <!-- 导航栏 -->
     <nav class="navbar" id="navbar">
         <div class="navbar-container">
@@ -46,31 +58,33 @@
         <!-- 无限轮播容器 -->
         <div class="hero-carousel-container">
             <div class="hero-carousel-track">
+                <!-- 第一张图片不懒加载（首屏关键资源） -->
                 <img src="assets/images/hero-01.png" alt="Hero 01" class="hero-carousel-img">
-                <img src="assets/images/hero-02.png" alt="Hero 02" class="hero-carousel-img">
-                <img src="assets/images/hero-03.png" alt="Hero 03" class="hero-carousel-img">
-                <img src="assets/images/hero-04.png" alt="Hero 04" class="hero-carousel-img">
-                <img src="assets/images/hero-05.png" alt="Hero 05" class="hero-carousel-img">
-                <img src="assets/images/hero-06.png" alt="Hero 06" class="hero-carousel-img">
-                <img src="assets/images/hero-07.png" alt="Hero 07" class="hero-carousel-img">
-                <img src="assets/images/hero-08.png" alt="Hero 08" class="hero-carousel-img">
-                <img src="assets/images/hero-09.png" alt="Hero 09" class="hero-carousel-img">
-                <img src="assets/images/hero-10.png" alt="Hero 10" class="hero-carousel-img">
-                <img src="assets/images/hero-11.png" alt="Hero 11" class="hero-carousel-img">
-                <img src="assets/images/hero-12.png" alt="Hero 12" class="hero-carousel-img">
-                <!-- 重复一遍以实现无缝循环 -->
-                <img src="assets/images/hero-01.png" alt="Hero 01" class="hero-carousel-img">
-                <img src="assets/images/hero-02.png" alt="Hero 02" class="hero-carousel-img">
-                <img src="assets/images/hero-03.png" alt="Hero 03" class="hero-carousel-img">
-                <img src="assets/images/hero-04.png" alt="Hero 04" class="hero-carousel-img">
-                <img src="assets/images/hero-05.png" alt="Hero 05" class="hero-carousel-img">
-                <img src="assets/images/hero-06.png" alt="Hero 06" class="hero-carousel-img">
-                <img src="assets/images/hero-07.png" alt="Hero 07" class="hero-carousel-img">
-                <img src="assets/images/hero-08.png" alt="Hero 08" class="hero-carousel-img">
-                <img src="assets/images/hero-09.png" alt="Hero 09" class="hero-carousel-img">
-                <img src="assets/images/hero-10.png" alt="Hero 10" class="hero-carousel-img">
-                <img src="assets/images/hero-11.png" alt="Hero 11" class="hero-carousel-img">
-                <img src="assets/images/hero-12.png" alt="Hero 12" class="hero-carousel-img">
+                <!-- 其余图片懒加载 -->
+                <img src="assets/images/hero-02.png" alt="Hero 02" class="hero-carousel-img" loading="lazy">
+                <img src="assets/images/hero-03.png" alt="Hero 03" class="hero-carousel-img" loading="lazy">
+                <img src="assets/images/hero-04.png" alt="Hero 04" class="hero-carousel-img" loading="lazy">
+                <img src="assets/images/hero-05.png" alt="Hero 05" class="hero-carousel-img" loading="lazy">
+                <img src="assets/images/hero-06.png" alt="Hero 06" class="hero-carousel-img" loading="lazy">
+                <img src="assets/images/hero-07.png" alt="Hero 07" class="hero-carousel-img" loading="lazy">
+                <img src="assets/images/hero-08.png" alt="Hero 08" class="hero-carousel-img" loading="lazy">
+                <img src="assets/images/hero-09.png" alt="Hero 09" class="hero-carousel-img" loading="lazy">
+                <img src="assets/images/hero-10.png" alt="Hero 10" class="hero-carousel-img" loading="lazy">
+                <img src="assets/images/hero-11.png" alt="Hero 11" class="hero-carousel-img" loading="lazy">
+                <img src="assets/images/hero-12.png" alt="Hero 12" class="hero-carousel-img" loading="lazy">
+                <!-- 重复一遍以实现无缝循环（全部懒加载） -->
+                <img src="assets/images/hero-01.png" alt="Hero 01" class="hero-carousel-img" loading="lazy">
+                <img src="assets/images/hero-02.png" alt="Hero 02" class="hero-carousel-img" loading="lazy">
+                <img src="assets/images/hero-03.png" alt="Hero 03" class="hero-carousel-img" loading="lazy">
+                <img src="assets/images/hero-04.png" alt="Hero 04" class="hero-carousel-img" loading="lazy">
+                <img src="assets/images/hero-05.png" alt="Hero 05" class="hero-carousel-img" loading="lazy">
+                <img src="assets/images/hero-06.png" alt="Hero 06" class="hero-carousel-img" loading="lazy">
+                <img src="assets/images/hero-07.png" alt="Hero 07" class="hero-carousel-img" loading="lazy">
+                <img src="assets/images/hero-08.png" alt="Hero 08" class="hero-carousel-img" loading="lazy">
+                <img src="assets/images/hero-09.png" alt="Hero 09" class="hero-carousel-img" loading="lazy">
+                <img src="assets/images/hero-10.png" alt="Hero 10" class="hero-carousel-img" loading="lazy">
+                <img src="assets/images/hero-11.png" alt="Hero 11" class="hero-carousel-img" loading="lazy">
+                <img src="assets/images/hero-12.png" alt="Hero 12" class="hero-carousel-img" loading="lazy">
             </div>
         </div>
         <!-- 哲学箴言 - 悬浮在视觉中心 -->
@@ -88,7 +102,7 @@
             <div class="dao-content-area">
                 <!-- 左栏：太极图 -->
                 <div class="dao-image-wrapper">
-                    <img src="assets/images/assetsimagesdao_taiji_final.png" alt="太极图" class="dao-taiji-img">
+                    <img src="assets/images/assetsimagesdao_taiji_final.png" alt="太极图" class="dao-taiji-img" loading="lazy">
                 </div>
                 <!-- 右栏：文字内容 -->
                 <div class="dao-text-wrapper">
@@ -328,12 +342,14 @@
     </div>
 
     <!-- JavaScript 文件引入 -->
+    <!-- 关键脚本 - 立即执行 -->
     <script src="js/main.js"></script>
     <script src="js/scroll.js"></script>
     <script src="js/animations.js"></script>
-    <script src="js/easter-egg.js"></script>
-    <script src="js/particles.js"></script>
     <script src="js/audio.js"></script>
+    <!-- 非关键脚本 - 延迟加载 -->
+    <script src="js/easter-egg.js" defer></script>
+    <script src="js/particles.js" defer></script>
     <!-- 音频调试工具（生产环境已注释，需要调试时取消注释） -->
     <!-- <script src="js/audio-debug.js"></script> -->
 </body>

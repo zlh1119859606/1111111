@@ -2,6 +2,20 @@
    Main JavaScript - 主逻辑文件
    ============================================ */
 
+// 隐藏加载指示器
+function hidePageLoader() {
+    const loader = document.getElementById('page-loader');
+    if (loader) {
+        loader.classList.add('hidden');
+        // 加载完成后移除元素（可选，节省DOM）
+        setTimeout(() => {
+            if (loader.parentNode) {
+                loader.parentNode.removeChild(loader);
+            }
+        }, 500);
+    }
+}
+
 // 等待 DOM 加载完成
 document.addEventListener('DOMContentLoaded', function() {
     // 强制滚动到顶部，确保显示英雄界面
@@ -110,8 +124,11 @@ function handlePageLoad() {
     // 可以在这里添加其他初始化逻辑
 }
 
-// 页面完全加载后，再次确保滚动到顶部
+// 页面完全加载后，再次确保滚动到顶部并隐藏加载器
 window.addEventListener('load', function() {
+    // 隐藏加载指示器
+    hidePageLoader();
+    
     // 清除历史滚动位置，强制滚动到顶部
     window.scrollTo(0, 0);
     

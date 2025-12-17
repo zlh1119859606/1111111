@@ -252,3 +252,4 @@ console.log('  - testAudio("bgm")    : 测试指定音频');
 console.log('  - activateAllAudio()  : 激活所有音频元素');
 
 
+
